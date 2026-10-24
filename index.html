@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background:#ffffff; color:#000000; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.6; }
+        body { background:#ffffff; color:#000000; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.6; background-image: linear-gradient(#eaeaea 1px, transparent 1px), linear-gradient(90deg, #eaeaea 1px, transparent 1px); background-size: 24px 24px; background-color:#ffffff; }
         a { color:#000000; text-decoration:none; }
         a:hover { text-decoration:underline; }
 
@@ -50,10 +50,30 @@
 
         footer { max-width:1240px; margin:30px auto 0; padding:18px 20px 24px; border-top:1px solid #111111; font-family:'Fira Code',Consolas,monospace; font-size:11px; color:#666666; text-align:center; }
 
+        @media (max-width:1120px) {
+            .container { gap:20px; }
+        }
         @media (max-width:880px) {
-            .container { grid-template-columns:1fr; }
-            .header-inner { justify-content:center; text-align:center; }
-            .meta { display:none; }
+            .container { grid-template-columns:1fr; gap:20px; }
+            .header-inner { flex-direction:column; gap:14px; align-items:flex-start; text-align:left; }
+            nav ul { gap:16px; }
+            .logo { font-size:24px; padding:6px 14px; }
+        }
+        @media (max-width:600px) {
+            .container { padding:0 14px; margin:16px auto; gap:16px; }
+            .post { padding:18px; }
+            .post-title { font-size:20px; }
+            nav ul { padding:8px 14px; flex-wrap:wrap; gap:14px; }
+            .header-inner { padding:10px 14px; }
+            .widget { padding:16px; }
+        }
+        @media (max-width:420px) {
+            .container { padding:0 12px; margin:12px auto; }
+            .post-title { font-size:18px; }
+            .post-excerpt { font-size:13px; }
+            nav a { font-size:12px; }
+            .tag { font-size:10px; padding:3px 8px; }
+            .stat { font-size:12px; }
         }
     </style>
 </head>
@@ -129,5 +149,9 @@
         </aside>
     </div>
 
+    <footer>
+        © 2024 Confusd. Glossy since 2014.<br>
+        No ads. Built from scratch.
+    </footer>
 </body>
 </html>
