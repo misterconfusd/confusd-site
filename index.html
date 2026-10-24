@@ -40,7 +40,7 @@
         .stat strong { color:#000000; font-weight:700; }
 
         .recent { list-style:none; padding:0; margin:0; }
-        .recent li { font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#333333; line-height:1.4; padding:10px 0; border-left:3px solid #cccccc; margin:0; display:flex; justify-content:space-between; }
+        .recent li { font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#333333; line-height:1.4; padding:12px 0 12px 16px; border-left:3px solid #cccccc; margin:0 0 10px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
         .recent li:first-child { border-left-color:#000000; }
         .divider { height:1px; background:#e0e0e0; margin:20px 0; }
 
@@ -49,6 +49,34 @@
         .tag:hover { background:#000000; color:#ffffff; }
 
         footer { max-width:1240px; margin:30px auto 0; padding:18px 20px 24px; border-top:1px solid #111111; font-family:'Fira Code',Consolas,monospace; font-size:11px; color:#666666; text-align:center; }
+
+        /* Dark mode */
+        body.dark-mode { background:#0a0a0a; color:#eeeeee; background-image:none; }
+        body.dark-mode header { background:#0a0a0a; border-bottom-color:#333333; }
+        body.dark-mode nav { background:#0a0a0a; border-bottom-color:#333333; }
+        body.dark-mode .card { background:#0a0a0a; border-color:#333333; box-shadow:0 1px 1px rgba(255,255,255,.06), 0 8px 24px rgba(0,0,0,.6); }
+        body.dark-mode .card:hover { border-color:#ffffff; }
+        body.dark-mode .post-tag { color:#000000; background:#ffffff; }
+        body.dark-mode .post-title { color:#ffffff; }
+        body.dark-mode .post-excerpt { color:#bbbbbb; }
+        body.dark-mode .widget { background:#0a0a0a; border-color:#333333; box-shadow:0 1px 1px rgba(255,255,255,.06), 0 8px 24px rgba(0,0,0,.6); }
+        body.dark-mode .widget h3 { color:#ffffff; border-bottom-color:#333333; }
+        body.dark-mode .stat { color:#cccccc; }
+        body.dark-mode .stat strong { color:#ffffff; }
+        body.dark-mode .recent li { color:#cccccc; border-left-color:#444444; }
+        body.dark-mode .recent li:first-child { border-left-color:#ffffff; }
+        body.dark-mode .divider { background:#222222; }
+        body.dark-mode .tag { color:#aaaaaa; border-color:#444444; }
+        body.dark-mode .tag:hover { background:#ffffff; color:#000000; }
+        body.dark-mode footer { border-top-color:#333333; color:#999999; }
+        body.dark-mode .header-inner { background:#0a0a0a; }
+        body.dark-mode .tagline { color:#888888; }
+        body.dark-mode .meta { color:#666666; }
+        body.dark-mode nav a { color:#cccccc; }
+        body.dark-mode nav a:hover { color:#ffffff; }
+        body.dark-mode #theme-toggle { background:#ffffff; color:#000000; }
+
+        #theme-toggle { background:#000000; color:#ffffff; border:none; padding:6px 12px; font-size:11px; cursor:pointer; font-family:'Fira Code',Consolas,monospace; border-radius:2px; }
 
         @media (max-width:1120px) {
             .container { gap:20px; }
@@ -84,6 +112,7 @@
             <div class="logo">Confusd<span>.</span></div>
             <div class="tagline">Fixing computing issues by creating custom ones.</div>
             <div class="meta">Confusd · 3 Posts · RSS</div>
+            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">Dark</button>
         </div>
     </header>
     
@@ -153,5 +182,18 @@
         © 2024 Confusd. Glossy since 2014.<br>
         No ads. Built from scratch.
     </footer>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) document.body.classList.add('dark-mode');
+        toggle.textContent = isDark ? 'Light' : 'Dark';
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const dark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            toggle.textContent = dark ? 'Light' : 'Dark';
+        });
+    </script>
 </body>
 </html>
