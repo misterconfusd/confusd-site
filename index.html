@@ -5,92 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confusd. | Tech, Linux, Ricing & Optimization</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Courier New', Courier, monospace; }
-        body { background: #0f111a; color: #a6accd; padding-bottom: 40px; }
-        
-        /* Brand Header */
-        header { background: #1a1c25; padding: 30px; text-align: center; border-bottom: 2px solid #00E6FF; }
-        .logo { font-size: 36px; font-weight: bold; color: #fff; letter-spacing: -1px; }
-        .logo span { color: #00E6FF; }
-        .tagline { font-size: 12px; color: #676e95; margin-top: 5px; text-transform: uppercase; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background:#ffffff; color:#000000; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.6; }
+        a { color:#000000; text-decoration:none; }
+        a:hover { text-decoration:underline; }
 
-        /* Tech Navigation Bar */
-        nav { background: #111218; padding: 12px; text-align: center; border-bottom: 1px solid #282a36; }
-        nav a { color: #82aaff; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 14px; }
-        nav a:hover { color: #00E6FF; }
+        header { position:sticky; top:0; z-index:50; background:#ffffff; border-bottom:1px solid #111111; }
+        .header-inner { max-width:1240px; margin:0 auto; padding:12px 24px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+        .logo { font-size:28px; font-weight:800; letter-spacing:-0.5px; padding:8px 18px; background:linear-gradient(90deg,#ffffff,#f2f2f2); box-shadow:0 1px 1px rgba(0,0,0,.15), 0 8px 24px rgba(0,0,0,.07); display:inline-block; }
+        .tagline { font-size:11px; color:#555555; letter-spacing:.06em; margin-top:2px; text-transform:uppercase; }
+        .meta { font-family:'Fira Code',Consolas,monospace; font-size:11px; color:#666666; }
 
-        /* Layout Grid */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; }
-        
-        /* Main Tech Content Area */
-        .main-feed { display: grid; grid-template-columns: 1fr; gap: 25px; }
-        .post-card { background: #1a1c25; border: 1px solid #282a36; border-radius: 4px; overflow: hidden; transition: 0.2s; }
-        .post-card:hover { border-color: #00E6FF; }
-        .post-preview-img { width: 100%; height: 220px; background: #222430; display: flex; align-items: center; justify-content: center; color: #4b526d; font-size: 14px; border-bottom: 1px solid #282a36; }
-        .post-body { padding: 20px; }
-        .post-tag { display: inline-block; background: rgba(0, 230, 255, 0.1); color: #00E6FF; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 3px; margin-bottom: 10px; text-transform: uppercase; }
-        .post-title { font-size: 22px; color: #fff; margin-bottom: 10px; line-height: 1.3; }
-        .post-excerpt { font-size: 14px; color: #a6accd; line-height: 1.6; }
+        nav { background:#ffffff; border-bottom:1px solid #111111; }
+        nav ul { max-width:1240px; margin:0 auto; padding:10px 24px; display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+        nav a { font-family:'Fira Code',Consolas,monospace; font-size:13px; font-weight:700; color:#222222; letter-spacing:.04em; padding:4px 0; }
+        nav a:hover { color:#000000; }
 
-        /* Sidebar Widgets */
-        aside { display: flex; flex-direction: column; gap: 25px; }
-        .widget { background: #1a1c25; padding: 20px; border-radius: 4px; border: 1px solid #282a36; }
-        .widget h3 { color: #fff; font-size: 16px; margin-bottom: 15px; border-bottom: 2px solid #ff5370; padding-bottom: 5px; text-transform: uppercase; }
-        .ricer-stat { font-size: 13px; line-height: 1.5; margin-bottom: 12px; color: #c792ea; }
-        .ricer-stat strong { color: #c3e88d; }
+        .container { max-width:1240px; margin:24px auto; padding:0 20px; display:grid; grid-template-columns:2.6fr 1fr; gap:26px; }
 
-        /* Mobile View Optimization */
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
+        main { display:flex; flex-direction:column; gap:24px; }
+        .card { background:#ffffff; border:1px solid #111111; box-shadow:0 1px 1px rgba(0,0,0,.10), 0 8px 24px rgba(0,0,0,.05); }
+        .card:hover { border-color:#000000; }
+
+        .post { padding:24px; }
+        .post-tag { display:inline-block; font-family:'Fira Code',Consolas,monospace; font-size:10px; font-weight:800; color:#ffffff; background:#000000; padding:4px 10px; letter-spacing:.06em; margin-bottom:12px; text-transform:uppercase; }
+        .post-title { font-size:22px; font-weight:800; line-height:1.25; color:#000000; margin:0 0 10px; }
+        .post-excerpt { font-size:14px; line-height:1.6; color:#444444; }
+
+        aside { display:flex; flex-direction:column; gap:24px; }
+        .widget { padding:20px; border:1px solid #111111; box-shadow:0 1px 1px rgba(0,0,0,.10), 0 8px 24px rgba(0,0,0,.05); }
+        .widget h3 { font-size:13px; font-weight:800; color:#000000; letter-spacing:.06em; margin:0 0 14px; border-bottom:1px solid #e0e0e0; padding-bottom:8px; text-transform:uppercase; }
+        .stat { font-family:'Fira Code',Consolas,monospace; font-size:13px; color:#333333; line-height:1.5; margin:8px 0; }
+        .stat strong { color:#000000; font-weight:700; }
+
+        .recent { list-style:none; padding:0; margin:0; }
+        .recent li { font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#333333; line-height:1.4; padding:10px 0; border-left:3px solid #cccccc; margin:0; display:flex; justify-content:space-between; }
+        .recent li:first-child { border-left-color:#000000; }
+        .divider { height:1px; background:#e0e0e0; margin:20px 0; }
+
+        .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+        .tag { font-family:'Fira Code',Consolas,monospace; font-size:11px; color:#444444; border:1px solid #111111; padding:4px 10px; }
+        .tag:hover { background:#000000; color:#ffffff; }
+
+        footer { max-width:1240px; margin:30px auto 0; padding:18px 20px 24px; border-top:1px solid #111111; font-family:'Fira Code',Consolas,monospace; font-size:11px; color:#666666; text-align:center; }
+
+        @media (max-width:880px) {
+            .container { grid-template-columns:1fr; }
+            .header-inner { justify-content:center; text-align:center; }
+            .meta { display:none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Confusd<span>.</span></div>
-        <div class="tagline">Fixing computing issues by creating custom ones.</div>
+        <div class="header-inner">
+            <div class="logo">Confusd<span>.</span></div>
+            <div class="tagline">Fixing computing issues by creating custom ones.</div>
+            <div class="meta">Confusd · 3 Posts · RSS</div>
+        </div>
     </header>
     
     <nav>
-        <a href="#">~/home</a>
-        <a href="#">/linux</a>
-        <a href="#">/ricing</a>
-        <a href="#">/hardware-speed</a>
+        <ul>
+            <a href="#">~/home</a>
+            <a href="#">/linux</a>
+            <a href="#">/ricing</a>
+            <a href="#">/hardware</a>
+        </ul>
     </nav>
 
     <div class="container">
         <main class="main-feed">
-            
-            <!-- Article 1 -->
-            <article class="post-card">
-                <div class="post-preview-img">[ console_screenshot_placeholder.png ]</div>
-                <div class="post-body">
-                    <span class="post-tag">Ricing</span>
-                    <h2 class="post-title">Bypassing Memory Constraints: How to Rice a Debian Desktop on 512MB VRAM</h2>
-                    <p class="post-excerpt">Standard modern desktop environments gorge on hardware allocations. This deep dive breaks down how to configure an ultra-lightweight Window Manager setup using Hyprland or Openbox to keep frame pipelines flawless on legacy integrated display chips...</p>
-                </div>
-            </article>
-            
-            <!-- Article 2 -->
-            <article class="post-card">
-                <div class="post-preview-img">[ terminal_benchmark_placeholder.png ]</div>
-                <div class="post-body">
-                    <span class="post-tag">Linux</span>
-                    <h2 class="post-title">Network Optimization Strategies for Host-Spoofed VPN Pipelines</h2>
-                    <p class="post-excerpt">When running complex local code pipelines over custom zero-rated ISP network layers, standard data packet streams frequently time out. Here is how to tweak your system kernel network variables to handle intermittent socket drops smoothly...</p>
-                </div>
+            <article class="post card">
+                <span class="post-tag">Ricing</span>
+                <h2 class="post-title">Bypassing Memory Constraints: How to Rice a Debian Desktop on 512MB VRAM</h2>
+                <p class="post-excerpt">Standard modern desktop environments gorge on hardware allocations. This deep dive breaks down how to configure an ultra-lightweight Window Manager setup using Hyprland or Openbox to keep frame pipelines flawless on legacy integrated display chips...</p>
+                <div style="margin-top:14px; font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#666666;">Oct 22, 2026</div>
             </article>
 
+            <article class="post card">
+                <span class="post-tag">Linux</span>
+                <h2 class="post-title">Network Optimization Strategies for Host-Spoofed VPN Pipelines</h2>
+                <p class="post-excerpt">When running complex local code pipelines over custom zero-rated ISP network layers, standard data packet streams frequently time out. Here is how to tweak your system kernel network variables to handle intermittent socket drops smoothly...</p>
+                <div style="margin-top:14px; font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#666666;">Oct 21, 2026</div>
+            </article>
+
+            <article class="post card">
+                <span class="post-tag">Linux</span>
+                <h2 class="post-title">Kernel Preemption Audit: Which Patch Helps Your Latency Spike?</h2>
+                <p class="post-excerpt">Real-time workloads demand predictable scheduling. Testing PREEMPT_RT vs native desktop kernels reveals measurable differences in tickless operation and interrupt handling on low-end hardware.</p>
+                <div style="margin-top:14px; font-family:'Fira Code',Consolas,monospace; font-size:12px; color:#666666;">Oct 20, 2026</div>
+            </article>
         </main>
 
         <aside>
             <div class="widget">
-                <h3>⚡ Current Specs</h3>
-                <div class="ricer-stat">OS: <strong>Debian GNU/Linux</strong></div>
-                <div class="ricer-stat">WM/DE: <strong>Custom Minimalist Layout</strong></div>
-                <div class="ricer-stat">IDE Pipeline: <strong>VSCodium + Cline Agent</strong></div>
-                <div class="ricer-stat">Target Storage: <strong>100GB Active Buffer</strong></div>
+                <h3>System Specs</h3>
+                <div class="stat">OS: <strong>Debian GNU/Linux</strong></div>
+                <div class="stat">Kernel: <strong>6.6.6-arch1</strong></div>
+                <div class="stat">WM/DE: <strong>Hyprland (Wayland)</strong></div>
+                <div class="stat">Editor: <strong>VSCodium + Cline Agent</strong></div>
+                <div class="stat">Storage: <strong>100GB Active Buffer</strong></div>
+            </div>
+
+            <div class="widget">
+                <h3>Recent Posts</h3>
+                <ul class="recent">
+                    <li><span>Ricing minimalist tiling on 128MB VRAM</span><span>Oct 22</span></li>
+                    <li><span>GRUB timeout tweak for fast cold boots</span><span>Oct 20</span></li>
+                    <li><span>ALSA vs Pulse latency on low-end NICs</span><span>Oct 18</span></li>
+                </ul>
+                <div class="divider"></div>
+                <div class="tags">
+                    <a class="tag" href="#">Ricing</a>
+                    <a class="tag" href="#">Linux</a>
+                    <a class="tag" href="#">Optimization</a>
+                    <a class="tag" href="#">Hardware</a>
+                    <a class="tag" href="#">Terminal</a>
+                </div>
             </div>
         </aside>
     </div>
